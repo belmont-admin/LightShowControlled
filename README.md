@@ -1,30 +1,79 @@
-> Open this page at [https://belmont-admin.github.io/lightshowcontrolled/](https://belmont-admin.github.io/lightshowcontrolled/)
+ # Make a remote controlled light show
 
-## Use this extension
+## Introduction @unplugged
 
-This repository can be added as an **extension** in MakeCode.
+In this session you will code the @boardname@ to display one of the coloured lights on the STOP:bit depending on what message is received via the radio receiver.
 
-* open [https://makecode.microbit.org/](https://makecode.microbit.org/)
-* click on **New Project**
-* click on **Extensions** under the gearwheel menu
-* search for **https://github.com/belmont-admin/lightshowcontrolled** and import
+## Step 1 @fullscreen
 
-## Edit this extension ![Build status badge](https://github.com/belmont-admin/lightshowcontrolled/workflows/MakeCode/badge.svg)
+1. Add a ``||basic:on start||`` block.
+2. Create a variable ``||variable:channel||``
+3. Set the ``||variable:channel||`` variable to **1** inside the ``||basic:on start||`` block
+4. Display the value of the ``||variable:channel||`` variable
+5. Use the ``||radio:radio set group||`` radio set group block to set the radio channel to the ``||variable:channel||`` variable
 
-To edit this repository in MakeCode.
+```blocks
+let channel = 1
+basic.showNumber(channel)
+radio.setGroup(channel)
 
-* open [https://makecode.microbit.org/](https://makecode.microbit.org/)
-* click on **Import** then click on **Import URL**
-* paste **https://github.com/belmont-admin/lightshowcontrolled** and click import
+```
 
-## Blocks preview
+## Step 2 @fullscreen
 
-This image shows the blocks code from the last commit in master.
-This image may take a few minutes to refresh.
+Add code so that when button ``|B|`` is pressed the channel number is increased by 1 and the new value is displayed and the radio channel is set to the new value
 
-![A rendered view of the blocks](https://github.com/belmont-admin/lightshowcontrolled/raw/master/.github/makecode/blocks.png)
+```blocks
+input.onButtonPressed(Button.B, function () {
+    channel += 1
+    basic.showNumber(channel)
+    radio.setGroup(channel)
+})
+```
+## Step 3 @fullscreen
 
-#### Metadata (used for search, rendering)
+Add code so that when button ``|A|`` is pressed the channel number is decreased by 1, the new value is displayed and the radio channel is set to the new value
 
-* for PXT/microbit
-<script src="https://makecode.com/gh-pages-embed.js"></script><script>makeCodeRender("{{ site.makecode.home_url }}", "{{ site.github.owner_name }}/{{ site.github.repository_name }}");</script>
+## Step 4 @fullscreen
+
+Use an ``||radio:on radio received (received string)||`` block to write code that will turn on the red light for 1 second when the message **red** is received via the radio.
+
+```blocks
+radio.onReceivedString(function (receivedString) {
+    if (receivedString == "red") {
+        pins.digitalWritePin(DigitalPin.P0, 1)
+        basic.pause(1000)
+        pins.digitalWritePin(DigitalPin.P0, 0)
+    }
+})
+```
+
+## Step 5 @fullscreen
+
+Expand the ``||logic:if||`` block by clicking  **+** sign twice so you can add a new test for receiving the message **amber** and turn the amber light on for 1 second.
+
+Expand the ``||logic:if||`` block by clicking  **+** again and add one more test for receiving the message **green** and turn the green light on for 1 second.
+
+```blocks
+radio.onReceivedString(function (receivedString) {
+    if (receivedString == "red") {
+        pins.digitalWritePin(DigitalPin.P0, 1)
+        basic.pause(1000)
+        pins.digitalWritePin(DigitalPin.P0, 0)
+    } else if (receivedString == "amber") {
+        pins.digitalWritePin(DigitalPin.P1, 1)
+        basic.pause(1000)
+        pins.digitalWritePin(DigitalPin.P1, 0)
+    } else if (receivedString == "green") {
+        pins.digitalWritePin(DigitalPin.P2, 1)
+        basic.pause(1000)
+        pins.digitalWritePin(DigitalPin.P2, 0)
+    }
+})
+```
+
+## Step 6 @fullscreen
+
+Connect your @boardname@, pair it and then use the ``||Download||`` button to send your code to the @boardname@
+
+Finally make sure you **save** your code.
