@@ -16,7 +16,6 @@ In this session you will code the @boardname@ to display one of the coloured lig
 let channel = 1
 basic.showNumber(channel)
 radio.setGroup(channel)
-
 ```
 
 ## Step 2 @fullscreen
