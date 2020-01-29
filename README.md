@@ -35,48 +35,61 @@ Add code so that when button ``|A|`` is pressed the channel number is decreased 
 
 ## Step 4 @fullscreen
 
-Use an ``||radio:on radio received (received string)||`` block to write code that will turn on the red light for 1 second when the message **red** is received via the radio.
+Use an ``||radio:on radio received (received string)||`` block to write code that will turn on the red light when the message **red** is received via the radio.
 
 ```blocks
 radio.onReceivedString(function (receivedString) {
     if (receivedString == "red") {
         pins.digitalWritePin(DigitalPin.P0, 1)
-        basic.pause(1000)
-        pins.digitalWritePin(DigitalPin.P0, 0)
     }
 })
 ```
 
 ## Step 5 @fullscreen
 
-Expand the ``||logic:if||`` block by clicking  **+** sign twice so you can add a new test for receiving the message **yellow** and turn the yellow light on for 1 second.
+Expand the ``||logic:if||`` block by clicking  **+** sign twice so you can add a new test for receiving the message **yellow** and turn the yellow light on.
 
-Expand the ``||logic:if||`` block by clicking  **+** again and add one more test for receiving the message **green** and turn the green light on for 1 second.
+Expand the ``||logic:if||`` block by clicking  **+** again and add one more test for receiving the message **green** and turn the green light on.
 
 ```blocks
 radio.onReceivedString(function (receivedString) {
     if (receivedString == "red") {
         pins.digitalWritePin(DigitalPin.P0, 1)
-        basic.pause(1000)
-        pins.digitalWritePin(DigitalPin.P0, 0)
     } else if (receivedString == "yellow") {
         pins.digitalWritePin(DigitalPin.P1, 1)
-        basic.pause(1000)
-        pins.digitalWritePin(DigitalPin.P1, 0)
     } else if (receivedString == "green") {
         pins.digitalWritePin(DigitalPin.P2, 1)
-        basic.pause(1000)
-        pins.digitalWritePin(DigitalPin.P2, 0)
     }
 })
 ```
 
 ## Step 6 @fullscreen
 
+Now add code at the end to wait 250 milliseconds and then turn all the lights off
+
+```blocks
+radio.onReceivedString(function (receivedString) {
+    if (receivedString == "red") {
+        pins.digitalWritePin(DigitalPin.P0, 1)
+    } else if (receivedString == "yellow") {
+        pins.digitalWritePin(DigitalPin.P1, 1)
+    } else if (receivedString == "green") {
+        pins.digitalWritePin(DigitalPin.P2, 1)
+    }
+    basic.pause(250)
+    pins.digitalWritePin(DigitalPin.P0, 0)
+    pins.digitalWritePin(DigitalPin.P1, 0)
+    pins.digitalWritePin(DigitalPin.P2, 0)
+})
+
+```
+
+## Step 7 @fullscreen
+
 Connect your @boardname@, pair it and then use the ``||Download||`` button to send your code to the @boardname@
 
 Finally make sure you **save** your code.
 
-## Step 7 @fullscreen
+## Step 8 @fullscreen
 
 When everyone has got code on their @boardname@ we can use all the @boardname@s together to make a light show.
