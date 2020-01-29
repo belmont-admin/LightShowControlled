@@ -49,7 +49,7 @@ radio.onReceivedString(function (receivedString) {
 
 ## Step 5 @fullscreen
 
-Expand the ``||logic:if||`` block by clicking  **+** sign twice so you can add a new test for receiving the message **amber** and turn the amber light on for 1 second.
+Expand the ``||logic:if||`` block by clicking  **+** sign twice so you can add a new test for receiving the message **yellow** and turn the yellow light on for 1 second.
 
 Expand the ``||logic:if||`` block by clicking  **+** again and add one more test for receiving the message **green** and turn the green light on for 1 second.
 
@@ -59,7 +59,7 @@ radio.onReceivedString(function (receivedString) {
         pins.digitalWritePin(DigitalPin.P0, 1)
         basic.pause(1000)
         pins.digitalWritePin(DigitalPin.P0, 0)
-    } else if (receivedString == "amber") {
+    } else if (receivedString == "yellow") {
         pins.digitalWritePin(DigitalPin.P1, 1)
         basic.pause(1000)
         pins.digitalWritePin(DigitalPin.P1, 0)
@@ -76,3 +76,7 @@ radio.onReceivedString(function (receivedString) {
 Connect your @boardname@, pair it and then use the ``||Download||`` button to send your code to the @boardname@
 
 Finally make sure you **save** your code.
+
+## Step 7 @fullscreen
+
+When everyone has got code on their @boardname@ we can use all the @boardname@s together to make a light show.
