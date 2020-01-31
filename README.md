@@ -7,10 +7,10 @@ In this session you will code the @boardname@ to display one of the coloured lig
 ## Step 1 @fullscreen
 
 1. Add a ``||basic:on start||`` block.
-2. Create a variable ``||variable:channel||``
-3. Set the ``||variable:channel||`` variable to **1** inside the ``||basic:on start||`` block
-4. Display the value of the ``||variable:channel||`` variable
-5. Use the ``||radio:radio set group||`` radio set group block to set the radio channel to the ``||variable:channel||`` variable
+2. Create a variable ``||variables:channel||``
+3. Inside the ``||basic:on start||`` block set the ``||variables:channel||`` variable to **1** using a ``||variables:set channel to||`` block.
+4. Display the value of the ``||variables:channel||`` variable using a ``||basic:show number||`` block.
+5. Use the ``||radio:radio set group||`` block to set the radio channel to the ``||variables:channel||`` variable
 
 ```blocks
 let channel = 1
@@ -36,6 +36,8 @@ Add code so that when button ``|A|`` is pressed the channel number is decreased 
 ## Step 4 @fullscreen
 
 Use an ``||radio:on radio received (received string)||`` block to write code that will turn on the red light when the message **red** is received via the radio.
+
+To use the ``||variables:receivedString||`` variable simply drag and drop it from inside the ``||radio:on radio received (received string)||`` block.
 
 ```blocks
 radio.onReceivedString(function (receivedString) {
@@ -65,7 +67,14 @@ radio.onReceivedString(function (receivedString) {
 
 ## Step 6 @fullscreen
 
-Now add code at the end to wait 250 milliseconds and then turn all the lights off
+Now add code at the end to wait **250** milliseconds and then turn all the lights off.
+
+### ~hint
+
+#### Check your pause block very carefully
+250 is not one of the values in the drop down menu and you will have to type it in.
+
+### ~
 
 ```blocks
 radio.onReceivedString(function (receivedString) {
